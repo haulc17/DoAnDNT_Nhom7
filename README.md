@@ -44,7 +44,7 @@ Giải thích các bảng:
 - GIOHANG: Lưu Id giỏ hàng, tên đăng nhập và tổng tiền
 - GIOHANG_DOAN: Lưu sản phẩm mà người dùng thêm vào giỏ hàng chứa Id giỏ hàng, Id đồ ăn, số lượng.
 
-## 3. Chạy ứng dụng
+## 3.⚙️ Chạy ứng dụng
 ### B1: Chạy cơ sở dữ liệu (SQL Server)
 Vào file AppDatDoAn.sql chạy để khởi tạo cơ sở dữ liệu.
 
@@ -61,15 +61,14 @@ Vào thư mục api --> apiConfig.js chỉnh sửa URLServer thành "http://{đ�
 
 Chạy "npx expo start" sử dụng ứng dụng expo go trên điện thoại kết nối (sử dụng chung mạng với máy tính).
 
-## 4. Một số hình ảnh của app
+## 4.🖼️ Một số hình ảnh của app
 <img width="200" alt="login" src="https://github.com/user-attachments/assets/7e4b1102-36c1-4145-8830-264d9f2f2ae1" /> <img width="200" alt="register" src="https://github.com/user-attachments/assets/abc9e437-ebb1-472c-8fa1-87fae564d939" />
 <img width="200" alt="home" src="https://github.com/user-attachments/assets/bd135c17-31a5-4949-b08b-727000498b0b" /> <img width="200" alt="detailproduct" src="https://github.com/user-attachments/assets/255df8ef-d409-4ef2-ac16-5ebd1785603f" />
 <img width="200" alt="profile" src="https://github.com/user-attachments/assets/414a3ec5-6f1f-494d-a4e4-3b7b79a7fbab" /> <img width="200" alt="cart" src="https://github.com/user-attachments/assets/d461d60f-b87e-4593-8e76-16a8d82817ca" />
 <img width="200" alt="ordershistory" src="https://github.com/user-attachments/assets/4883763f-26f0-4752-8a57-8f6ffe7765ed" /> <img width="200" alt="orderdetail" src="https://github.com/user-attachments/assets/1838809d-d127-493f-9f94-81f988c1c542" />
 
-## 5. Test case
-Vào file TestCase.xlxs để xem
-Tổng kết trong tổng số 107 test case thì 101 test case pass
+## 5.✅ Test case
+Dữ liệu được ghi chứ ở trong file TestCase.xlxs.
 
 ## License
 
