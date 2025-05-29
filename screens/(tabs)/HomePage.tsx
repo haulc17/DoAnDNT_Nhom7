@@ -14,6 +14,8 @@ import HeaderCategoryFoodHome from "../components/HomePage/HeaderCategoryFoodHom
 import CategoryFoodHome from "../components/HomePage/CategoryFoodHome";
 import BottomNavbar from "../components/BottomNavbar";
 import Loading from "../components/Loading";
+import PaginationInfo from "../components/HomePage/PaginationInfo";
+
 import RefreshableScrollView from "../components/RefreshableScrollView";
 import showError from "../components/Error";
 
@@ -165,28 +167,11 @@ const HomePage = () => {
               foods={foods}
               handleBuyButton={handleBuyButton}
             />
-            <View style={{ paddingBottom: 60 }}>
-              {!loadingMore && page < totalPages && (
-                <View>
-                  <Loading />
-                  <Text style={{ textAlign: "center", padding: 10 }}>
-                    Đang tải thêm...
-                  </Text>
-                </View>
-              )}
-              {!loadingMore && page >= totalPages && (
-                <Text
-                  style={{
-                    textAlign: "center",
-                    padding: 10,
-                    color: "gray",
-                    marginBottom: 10,
-                  }}
-                >
-                  Đã hiển thị tất cả món ăn.
-                </Text>
-              )}
-            </View>
+            <PaginationInfo
+              loadingMore={loadingMore}
+              page={page}
+              totalPages={totalPages}
+            />
           </View>
         )}
       </RefreshableScrollView>
