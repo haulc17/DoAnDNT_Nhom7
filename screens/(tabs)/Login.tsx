@@ -19,11 +19,36 @@ export default function Login() {
   const navigation = useNavigation();
 
   const handleLogin = async () => {
-    // Kiểm tra độ dài
-    if (TenDangNhap.length < 6 || MatKhau.length < 6) {
-      showError("Lỗi", "Tên đăng nhập và mật khẩu phải có ít nhất 6 ký tự");
+    //-----------------------------------------------------------------------------
+    // Check tên đăng nhập
+    setTenDangNhap(TenDangNhap.trim());
+
+    if (TenDangNhap.length === 0) {
+      Alert.alert("Lỗi", "Tên đăng nhập không được để trống");
       return;
     }
+
+    // Kiểm tra độ dài
+    if (TenDangNhap.length < 6) {
+      Alert.alert("Lỗi", "Tên đăng nhập phải có ít nhất 6 ký tự");
+      return;
+    }
+    // ------------------------------------------------------------------------------
+    // Kiểm tra mật khẩu
+    setMatKhau(MatKhau.trim());
+
+    if (MatKhau.length === 0) {
+      Alert.alert("Lỗi", "Mật khẩu không được để trống");
+      return;
+    }
+
+    // Kiểm tra độ dài
+    if (MatKhau.length < 6) {
+      Alert.alert("Lỗi", "Mật khẩu phải có ít nhất 6 ký tự");
+      return;
+    }
+
+    // -------------------------------------------------------------------------------
 
     try {
       const response = await loginUser(TenDangNhap, MatKhau);
@@ -37,9 +62,8 @@ export default function Login() {
       } else {
         Alert.alert("Đăng nhập thất bại");
       }
-    } catch (error) {
-      // console.error("❌ Lỗi đăng nhập:", error.response || error.message);
-      showError("Lỗi", "Lỗi kết nôi với máy chủ. Vui lòng thử lại sau.");
+    } catch (error: any) {
+      showError("Lỗi", error.response?.data?.error || "Có lỗi xảy ra");
     }
   };
 

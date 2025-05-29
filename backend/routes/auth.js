@@ -12,6 +12,12 @@ router.post("/login", async (req, res) => {
   }
 
   try {
+    const checkUser =
+      await sql.query`SELECT * FROM TAIKHOAN WHERE TenDangNhap = ${TenDangNhap}`;
+    if (checkUser.recordset.length == 0) {
+      return res.status(400).json({ error: "Tên đăng nhập không tồn tại trong cơ sở dữ liệu!" });
+    }
+
     const result = await sql.query`
             SELECT * FROM TAIKHOAN 
             WHERE TenDangNhap = ${TenDangNhap} 
@@ -28,7 +34,7 @@ router.post("/login", async (req, res) => {
         token
       });
     } else {
-      res.status(401).json({ error: "Sai tên đăng nhập hoặc mật khẩu" });
+      res.status(401).json({ error: "Sai mật khẩu" });
     }
   } catch (err) {
     console.error("❌ Lỗi truy vấn đăng nhập:", err);
@@ -44,6 +50,11 @@ router.post("/register", async (req, res) => {
       await sql.query`SELECT * FROM TAIKHOAN WHERE TenDangNhap = ${TenDangNhap}`;
     if (checkUser.recordset.length > 0) {
       return res.status(400).json({ error: "Tên đăng nhập đã tồn tại!" });
+    }
+    const checkPhone =
+      await sql.query`SELECT * FROM TAIKHOAN WHERE SDT = ${SDT}`;
+    if (checkPhone.recordset.length > 0) {
+      return res.status(400).json({ error: "Số điện thoại đã được sử dụng!" });
     }
     await sql.query`
             INSERT INTO TAIKHOAN (TenDangNhap, MatKhau, HoTen, SDT, DiaChi)

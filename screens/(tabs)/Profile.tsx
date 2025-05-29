@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Alert,
-} from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BackHeader from "../components/BackHeader";
 import { updateUserProfile } from "../../api/apiLoginRegister";
-
-// Import các component nhỏ
 import ProfileInput from "../components/Profile/ProfileInput";
 import PasswordInput from "../components/Profile/PasswordInput";
 import SaveButton from "../components/Profile/SaveButton";
@@ -34,7 +27,73 @@ export default function Profile() {
     getUser();
   }, []);
 
+  // ==== Các hàm kiểm tra dữ liệu ====
+  const isValidPhoneNumber = (phone) => {
+    const regex = /^[0-9]+$/;
+    return regex.test(phone);
+  };
+
+  const isValidFullName = (fullName) => {
+    const regex = /^[\p{L}\s]+$/u;
+    return regex.test(fullName);
+  };
+
   const handleSave = async () => {
+    const { HoTen, SDT, DiaChi, MatKhau } = user;
+
+    // Họ tên
+    if (!HoTen.trim()) {
+      Alert.alert("Lỗi", "Họ tên không được để trống");
+      return;
+    }
+
+    if (!isValidFullName(HoTen)) {
+      Alert.alert("Lỗi", "Họ tên không được chứa các chữ số và ký tự đặc biệt");
+      return;
+    }
+
+    // Số điện thoại
+    if (!SDT.trim()) {
+      Alert.alert("Lỗi", "Số điện thoại không được để trống");
+      return;
+    }
+
+    if (!isValidPhoneNumber(SDT)) {
+      Alert.alert("Lỗi", "Số điện thoại chỉ được chứa các chữ số từ 0-9");
+      return;
+    }
+
+    if (SDT.length !== 10) {
+      Alert.alert("Lỗi", "Số điện thoại phải có đúng 10 chữ số");
+      return;
+    }
+
+    // Địa chỉ
+    if (!DiaChi.trim()) {
+      Alert.alert("Lỗi", "Địa chỉ không được để trống");
+      return;
+    }
+
+    if (isValidPhoneNumber(DiaChi)) {
+      Alert.alert(
+        "Lỗi",
+        "Địa chỉ không được chứa ký tự đặc biệt hoặc khoảng trắng giữa các ký tự"
+      );
+      return;
+    }
+
+    // Mật khẩu
+    if (!MatKhau.trim()) {
+      Alert.alert("Lỗi", "Mật khẩu không được để trống");
+      return;
+    }
+
+    if (MatKhau.length < 6) {
+      Alert.alert("Lỗi", "Mật khẩu phải có ít nhất 6 ký tự");
+      return;
+    }
+
+    // ==== Gọi API sau khi kiểm tra xong ====
     try {
       const response = await updateUserProfile(user);
       if (response.success) {
@@ -45,7 +104,6 @@ export default function Profile() {
       }
     } catch (error) {
       console.error("Lỗi cập nhật:", error);
-      // Alert.alert("Lỗi", "Có lỗi xảy ra, vui lòng thử lại sau!");
       showError("Lỗi", "Có lỗi xảy ra, vui lòng thử lại sau!");
     }
   };

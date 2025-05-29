@@ -10,7 +10,7 @@ import {
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BackHeader from "../components/BackHeader";
-import {BackHeaderToHome} from "../components/BackHeader";
+import { BackHeaderToHome } from "../components/BackHeader";
 import Loading from "../components/Loading";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getOrdersHistory } from "../../api/apiOrdersHistory";
@@ -93,16 +93,21 @@ const OrderHistoryScreen = () => {
     <SafeAreaView style={styles.app}>
       <BackHeaderToHome title={"Lịch sử đơn hàng"} />
       <View style={styles.container}>
-        {orders.length > 0 && (
-          <FlatList
-            data={orders}
-            keyExtractor={(item) => item.IDDonHang}
-            renderItem={({ item }) => <OrderItem item={item} />}
-            contentContainerStyle={styles.list}
-            refreshing={loading}
-            onRefresh={fetchOrders}
-          />
-        )}
+        {/* {orders.length > 0 && ( */}
+        <FlatList
+          data={orders}
+          keyExtractor={(item) => item.IDDonHang}
+          renderItem={({ item }) => <OrderItem item={item} />}
+          contentContainerStyle={styles.list}
+          refreshing={loading}
+          onRefresh={fetchOrders}
+          ListEmptyComponent={() => (
+            <View style={{ alignItems: "center", marginTop: 20 }}>
+              <Text>Bạn chưa có đơn hàng nào!</Text>
+            </View>
+          )}
+        />
+        {/* )} */}
       </View>
       <Pagination
         page={page}

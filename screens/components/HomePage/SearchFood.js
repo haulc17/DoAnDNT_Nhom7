@@ -1,8 +1,20 @@
-import { View, Text, TouchableOpacity, StyleSheet, TextInput, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+  Image,
+} from "react-native";
 import { URLServer } from "../../../api/apiConfig";
 import formatToVND from "../../formatFunction/formatToVND";
 
-const SearchFood = ({ searchText, handleSearchText, foods, handleBuyButton }) => {
+const SearchFood = ({
+  searchText,
+  handleSearchText,
+  foods,
+  handleBuyButton,
+}) => {
   return (
     <View style={styles.searchBarContainer}>
       <TextInput
@@ -14,27 +26,29 @@ const SearchFood = ({ searchText, handleSearchText, foods, handleBuyButton }) =>
 
       {searchText.length > 0 && (
         <View>
-          {foods.map((item) => (
-            <View key={item.IDDoAn} style={styles.foodItemContainer}>
-              <Image
-                source={{ uri: `${URLServer}/images${item.EncodeAnh}` }}
-                style={styles.foodImage}
-              />
-              <View style={styles.foodInfo}>
-                <Text style={styles.foodName}>{item.Ten}</Text>
-                <Text style={styles.foodType}>{item.Loai}</Text>
-                <Text style={styles.foodPrice}>
-                  {formatToVND(item.Gia)}đ
-                </Text>
+          {foods.length === 0 ? (
+            <Text style={styles.noResultText}>Không tìm thấy kết quả nào</Text>
+          ) : (
+            foods.map((item) => (
+              <View key={item.IDDoAn} style={styles.foodItemContainer}>
+                <Image
+                  source={{ uri: `${URLServer}/images${item.EncodeAnh}` }}
+                  style={styles.foodImage}
+                />
+                <View style={styles.foodInfo}>
+                  <Text style={styles.foodName}>{item.Ten}</Text>
+                  <Text style={styles.foodType}>{item.Loai}</Text>
+                  <Text style={styles.foodPrice}>{formatToVND(item.Gia)}đ</Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.buyButton}
+                  onPress={() => handleBuyButton(item)}
+                >
+                  <Text style={styles.buyButtonText}>Thêm vào giỏ</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity
-                style={styles.buyButton}
-                onPress={() => handleBuyButton(item)}
-              >
-                <Text style={styles.buyButtonText}>Thêm vào giỏ</Text>
-              </TouchableOpacity>
-            </View>
-          ))}
+            ))
+          )}
         </View>
       )}
     </View>
@@ -93,6 +107,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
+  noResultText: {
+  textAlign: "center",
+  marginTop: 20,
+  fontStyle: "italic",
+  color: "gray",
+},
+
 });
 
 export { SearchFood };

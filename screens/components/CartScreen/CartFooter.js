@@ -1,11 +1,23 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
 const CartFooter = ({
   totalFoodsAmount,
   selectedItems,
   navigation,
 }) => {
+  const handleBuyPress = () => {
+    if (selectedItems.length === 0) {
+      Alert.alert("Thông báo", "Vui lòng thêm vào giỏ hàng trước");
+      return;
+    }
+
+    navigation.navigate("OrderConfirmScreen", {
+      selectedItems,
+      totalFoodsAmount,
+    });
+  };
+
   return (
     <View style={styles.footer}>
       <Text style={styles.totalText}>Tổng tiền: </Text>
@@ -14,13 +26,7 @@ const CartFooter = ({
       </Text>
       <TouchableOpacity
         style={styles.buyButton}
-        disabled={selectedItems.length === 0}
-        onPress={() =>
-          navigation.navigate("OrderConfirmScreen", {
-            selectedItems,
-            totalFoodsAmount,
-          })
-        }
+        onPress={handleBuyPress}
       >
         <Text style={styles.buyButtonText}>
           Mua hàng ({selectedItems.length})
