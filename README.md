@@ -1,4 +1,4 @@
-# ![image](https://github.com/user-attachments/assets/52e5a721-d9be-4292-9879-b063ec6fd756) Ứng dụng bán đồ ăn trực tuyến
+# <img width="50" alt="login" src="https://github.com/user-attachments/assets/79247a8a-20a7-4eaa-8029-8cd01302ecc6" /> Ứng dụng bán đồ ăn trực tuyến
 # Nhóm 7: 
 Thành Viên:
 ## Đào Xuân Hậu - 0072767
@@ -11,6 +11,7 @@ Thành Viên:
 ## 1.🚀 Tổng quan
 
 ### 🛍️ Tính năng chính (Dành cho người dùng)
+- Đăng nhập, đăng ký
 - Xem danh sách đồ ăn theo danh mục
 - Tìm kiếm đồ ăn
 - Thêm vào giỏ hàng, đặt hàng
@@ -33,7 +34,7 @@ Thành Viên:
 Ứng dụng sử dụng cơ sở dữ liệu quan hệ MySQL để lưu trữ thông tin sản phẩm, người dùng, đơn hàng và các thành phần liên quan. Dữ liệu được tổ chức dưới dạng các bảng với các mối quan hệ rõ ràng, đảm bảo tính toàn vẹn và hiệu quả khi truy xuất.
 ### 🧩 Sơ đồ cơ sở dữ liệu (ERD)
 Hình dưới đây thể hiện sơ đồ các bảng chính và mối quan hệ giữa chúng:
-<img width="575" alt="DbDiagramDADNT" src="https://github.com/user-attachments/assets/2c5b83b2-f7ac-4faa-87b8-f0b7282f7222" />
+<img width="575" alt="DbDiagramDADNT" src="https://github.com/user-attachments/assets/4975d13a-6a7d-438d-97cb-24916f537732" />
 
 Giải thích các bảng:
 - TAIKHOAN: Lưu thông tin người dùng như tên đăng nhập, mật khẩu, số điện thoại, họ tên, địa chỉ,...
@@ -58,7 +59,7 @@ Vào thư mục api --> apiConfig.js chỉnh sửa URLServer thành "http://{đ�
 
 <img width="470" alt="29-5 apiconfig" src="https://github.com/user-attachments/assets/b22539ef-f172-4f79-823f-7e8f79f458e0" />
 
-Chạy "npx expo start" sử dụng ứng dụng expo go trên điện thoại kết nối 
+Chạy "npx expo start" sử dụng ứng dụng expo go trên điện thoại kết nối (sử dụng chung mạng với máy tính).
 
 ## 4. Một số hình ảnh của app
 <img width="200" alt="login" src="https://github.com/user-attachments/assets/7e4b1102-36c1-4145-8830-264d9f2f2ae1" /> <img width="200" alt="register" src="https://github.com/user-attachments/assets/abc9e437-ebb1-472c-8fa1-87fae564d939" />
@@ -69,6 +70,12 @@ Chạy "npx expo start" sử dụng ứng dụng expo go trên điện thoại k
 ## 5. Test case
 Vào file TestCase.xlxs để xem
 Tổng kết trong tổng số 107 test case thì 101 test case pass
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+© 2025 [Nhóm 7 Đồ án Đa nền tảng 67CS2].
 
 
 
