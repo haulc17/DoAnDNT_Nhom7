@@ -11,22 +11,31 @@ Thành Viên:
 ## 1.🚀 Tổng quan
 
 ### 🛍️ Tính năng chính (Dành cho người dùng)
-- Đăng nhập, đăng ký
-- Xem danh sách đồ ăn theo danh mục
-- Tìm kiếm đồ ăn
+- Quản lý tài khoản người dùng
+  - Đăng nhập: Sử dụng JWT để xác thực người dùng.
+  - Cập nhật thông tin cá nhân: Họ tên, số điện thoại, địa chỉ,...
+- Xem danh sách đồ ăn 
+  - Xem theo danh mục(tên loại đồ ăn)
+  - Tìm kiếm theo tên.
+  - Chi tiết sản phẩm: tên đồ ăn, thông tin mô tả, giá tiền, ảnh minh họa.
 - Thêm vào giỏ hàng, đặt hàng
-- Theo dõi đơn mua: đang giao, đã giao
-- Cập nhật thông tin tài khoản
+  - Xem giỏ hàng
+  - Cập nhật số lượng đồ ăn (thêm, giảm, xóa) giỏ hàng.
+  - Đặt hàng: đơn sẽ được lưu vào lịch sử đơn chờ ghi nhận và xủ lý.
+- Theo dõi đơn mua
+  - Trạng thái đơn hàng: đang xử lý, đang giao, đã giao...
+  - Cho phép hủy đơn với các đơn ở tình trạng đang xử lý, chờ xác nhận.
+  
 
 ## 🧑‍💻 Công nghệ sử dụng
 
 | Layer         | Công nghệ                                  |
 |---------------|--------------------------------------------|
 | Frontend      | React Native (Expo), React Navigation      |
-| Backend       | Node.js, Express.js                        |
+| Backend       | Node.js, Express                           |
 | Cơ sở dữ liệu | SQL Server                                 |
 | Authentication| JWT (JSON Web Token)                       |
-| Dev Tool      | VS Code                                    |
+| Dev Tool      | VS Code, SSMS 2014                         |
 
 
 
